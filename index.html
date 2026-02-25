@@ -38,7 +38,6 @@
 
   /* ── HERO ── */
   #hero {
-    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-top: 64px;
@@ -46,7 +45,7 @@
   }
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 3.5rem 4rem;
+    padding: 3rem 4rem;
     border-right: 1px solid var(--rule);
     position: relative;
   }
@@ -67,16 +66,19 @@
     border-right: 2px solid var(--accent-light);
     opacity: 0.3;
   }
-  .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
-  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 5rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
-  .hero-title { font-size: 0.95rem; color: var(--muted); max-width: 400px; margin-bottom: 2.5rem; line-height: 1.8; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: #fff; padding: 0.85rem 1.75rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background .2s; align-self: flex-start; }
-  .hero-cta:hover { background: #8a6e48; }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 5rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .hero-title { font-size: 0.95rem; color: var(--muted); max-width: 400px; margin-bottom: 1.75rem; line-height: 1.8; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: #fff; padding: 0.85rem 1.75rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background .2s; }
+  .hero-cta:hover { background: #6e5530; }
+  .hero-cta-outline { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--ink); padding: 0.85rem 1.75rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background .2s, color .2s; border: 1.5px solid var(--rule); }
+  .hero-cta-outline:hover { background: var(--tan); border-color: var(--accent-light); }
+  .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
   .hero-right {
     background: var(--sand);
-    display: flex; flex-direction: column;
-    padding: 2.5rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 3rem;
     position: relative; overflow: hidden;
   }
   /* big decorative quote mark */
@@ -91,11 +93,11 @@
     pointer-events: none;
     user-select: none;
   }
-  .hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 2rem; position: relative; z-index: 1; }
-  .hero-stat { background: var(--tan); padding: 1.4rem 1.25rem; }
-  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; font-weight: 700; }
+  .hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .hero-stat { background: var(--tan); padding: 1.25rem; }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 0.25rem; font-weight: 700; }
   .hero-stat-label { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-  .hero-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--ink); line-height: 1.7; border-top: 1px solid #d5c9bc; padding-top: 1.5rem; position: relative; z-index: 1; }
+  .hero-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--ink); line-height: 1.7; border-top: 1px solid #d5c9bc; padding-top: 1.25rem; position: relative; z-index: 1; }
 
   /* ── SECTION BASE ── */
   section { padding: 3.5rem 4rem; }
@@ -270,7 +272,7 @@
   .hero-eyebrow { animation: fadeUp .6s ease both; }
   .hero-name    { animation: fadeUp .7s .1s ease both; }
   .hero-title   { animation: fadeUp .7s .2s ease both; }
-  .hero-cta     { animation: fadeUp .7s .3s ease both; }
+  .hero-btns     { animation: fadeUp .7s .3s ease both; }
   .hero-stat-grid { animation: fadeUp .8s .35s ease both; }
   .hero-tagline { animation: fadeUp .8s .5s ease both; }
 
@@ -288,8 +290,8 @@
     .nav-links { gap: 0.85rem; }
     .nav-links a { font-size: 0.68rem; }
 
-    #hero { grid-template-columns: 1fr; min-height: auto; padding-top: 58px; }
-    .hero-left { padding: 3rem 1.25rem 2rem; border-right: none; border-bottom: 1px solid var(--rule); }
+    #hero { grid-template-columns: 1fr; padding-top: 58px; }
+    .hero-left { padding: 2.5rem 1.25rem 2rem; border-right: none; border-bottom: 1px solid var(--rule); }
     .hero-left::before, .hero-left::after { display: none; }
     .hero-name { font-size: 2.6rem; }
     .hero-right { padding: 1.5rem 1.25rem; }
@@ -358,7 +360,10 @@
     <p class="hero-eyebrow">GTM Content Portfolio</p>
     <h1 class="hero-name">Anusha S</h1>
     <p class="hero-title">Content Strategist and B2B Marketer specialising in cybersecurity, SaaS GTM, and demand generation. I turn dense technical concepts into content that builds pipeline.</p>
-    <a href="#work" class="hero-cta">View Work →</a>
+    <div class="hero-btns">
+      <a href="#contact" class="hero-cta">✉ Connect with Me</a>
+      <a href="Resume.pdf" download class="hero-cta-outline">↓ Download Resume</a>
+    </div>
   </div>
   <div class="hero-right">
     <div class="hero-stat-grid">

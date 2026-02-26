@@ -31,7 +31,7 @@
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--rule);
   }
-  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; }
   .nav-links a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
   .nav-links a:hover { color: var(--accent); }
@@ -276,6 +276,32 @@
   .hero-stat-grid { animation: fadeUp .8s .35s ease both; }
   .hero-tagline { animation: fadeUp .8s .5s ease both; }
 
+  /* ── HAMBURGER NAV ── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: all .25s;
+  }
+  .nav-mobile-menu {
+    display: none; position: fixed; top: 48px; left: 0; right: 0;
+    background: rgba(250,247,242,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 1.5rem 1.5rem;
+    z-index: 99; flex-direction: column; gap: 0;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+
   /* ── RESPONSIVE TABLET ── */
   @media (max-width: 1024px) {
     .work-grid { grid-template-columns: repeat(2, 1fr); }
@@ -286,56 +312,80 @@
 
   /* ── RESPONSIVE MOBILE ── */
   @media (max-width: 700px) {
+    /* Nav — hide links, show hamburger */
     nav { padding: 0.85rem 1.25rem; }
-    .nav-links { gap: 0.85rem; }
-    .nav-links a { font-size: 0.68rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
 
-    #hero { grid-template-columns: 1fr; padding-top: 58px; }
-    .hero-left { padding: 2.5rem 1.25rem 2rem; border-right: none; border-bottom: 1px solid var(--rule); }
+    /* Hero */
+    #hero { grid-template-columns: 1fr; padding-top: 48px; }
+    .hero-left { padding: 2.25rem 1.25rem 1.75rem; border-right: none; border-bottom: 1px solid var(--rule); }
     .hero-left::before, .hero-left::after { display: none; }
-    .hero-name { font-size: 2.6rem; }
-    .hero-right { padding: 1.5rem 1.25rem; }
-    .hero-right::before { font-size: 10rem; opacity: 0.5; }
-    .hero-stat-grid { grid-template-columns: repeat(4, 1fr); margin-bottom: 0; }
-    .hero-stat { padding: 1rem 0.5rem; }
-    .hero-stat-num { font-size: 1.5rem; }
-    .hero-stat-label { font-size: 0.6rem; }
-    .hero-tagline { display: none; }
+    .hero-title { font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .hero-btns { flex-direction: column; gap: 0.6rem; }
+    .hero-cta, .hero-cta-outline { justify-content: center; text-align: center; font-size: 0.8rem; padding: 0.8rem 1.25rem; }
+    .hero-right { padding: 1.25rem; }
+    .hero-right::before { font-size: 8rem; opacity: 0.4; }
+    .hero-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; margin-bottom: 1rem; }
+    .hero-stat { padding: 1rem; }
+    .hero-stat-num { font-size: 1.8rem; }
+    .hero-stat-label { font-size: 0.62rem; }
+    .hero-tagline { font-size: 0.85rem; padding-top: 1rem; }
 
+    /* Sections */
     section { padding: 2.5rem 1.25rem; }
-    .section-header { margin-bottom: 1.5rem; }
+    .section-header { margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.4rem; }
     .section-title { font-size: 1.6rem; }
 
+    /* Work */
     .work-grid { grid-template-columns: 1fr; }
-    .work-card { padding: 1.5rem 1.25rem; }
+    .work-card { padding: 1.25rem; }
+    .work-icon { width: 36px; height: 36px; font-size: 1rem; margin-bottom: 0.75rem; }
+    .work-title { font-size: 1.05rem; }
 
-    .impact-grid { grid-template-columns: 1fr; }
-    .impact-story { grid-template-columns: 1fr; }
+    /* Impact */
+    .impact-grid { grid-template-columns: 1fr 1fr; }
+    .impact-card { padding: 1.25rem 1rem; }
+    .impact-num { font-size: 1.9rem; }
 
+    /* Inbound boxes */
+    #inbound > div { grid-template-columns: 1fr !important; }
+
+    /* Specialisms */
     .spec-grid { grid-template-columns: repeat(2, 1fr); }
-    .spec-card { padding: 1.5rem 1.25rem; }
+    .spec-card { padding: 1.25rem 1rem; }
+    .spec-name { font-size: 0.9rem; }
 
-    .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    /* Experience */
+    .exp-item { grid-template-columns: 1fr; gap: 0.25rem; padding: 1.25rem 0; }
     .exp-dot-col { display: none; }
-    .exp-year { margin-bottom: 0.25rem; }
+    .exp-year { font-size: 0.7rem; margin-bottom: 0.2rem; }
+    .exp-role { font-size: 1rem; }
 
+    /* Skills */
     .skills-layout { grid-template-columns: 1fr; }
-    .skills-panel { padding: 1.75rem 1.25rem; }
+    .skills-panel { padding: 1.5rem 1.25rem; }
     .tools-visual { grid-template-columns: repeat(4, 1fr); }
+    .tool-tile { padding: 1rem 0.5rem; }
+    .tool-emoji { font-size: 1.2rem; }
+    .tool-name { font-size: 0.65rem; }
 
+    /* Recommendations */
     .rec-grid { grid-template-columns: 1fr; }
-    .rec-card { padding: 2rem 1.25rem; }
-    .rec-header { flex-wrap: wrap; }
+    .rec-card { padding: 1.5rem 1.25rem; }
+    .rec-pullquote { font-size: 0.9rem; }
+    .rec-body { font-size: 0.82rem; }
 
-    #contact { padding: 4rem 1.25rem; }
-    #contact .section-title { font-size: 1.9rem; }
-    .contact-links { flex-direction: column; border-radius: 0; }
-    .contact-link { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); justify-content: center; }
+    /* Contact */
+    #contact { padding: 3rem 1.25rem; }
+    #contact .section-title { font-size: 1.75rem; }
+    .contact-links { flex-direction: column; border-radius: 0; width: 100%; }
+    .contact-link { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); justify-content: center; width: 100%; }
+  }
 
-    @media (max-width: 400px) {
-      .hero-stat-grid { grid-template-columns: repeat(2, 1fr); }
-      .tools-visual { grid-template-columns: repeat(4, 1fr); }
-    }
+  @media (max-width: 400px) {
+    .impact-grid { grid-template-columns: 1fr; }
+    .spec-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -343,7 +393,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Anusha S</a>
+  <a class="nav-logo" href="#">Portfolio</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#impact">Impact</a></li>
@@ -352,12 +402,24 @@
     <li><a href="#recommendations">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#work" onclick="closeMenu()">Work</a>
+  <a href="#impact" onclick="closeMenu()">Impact</a>
+  <a href="#specialisms" onclick="closeMenu()">Expertise</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#recommendations" onclick="closeMenu()">Reviews</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">GTM Content Portfolio</p>
     <h1 class="hero-name">Anusha S</h1>
     <p class="hero-title">Content Strategist and B2B Marketer specialising in cybersecurity, SaaS GTM, and demand generation. I turn dense technical concepts into content that builds pipeline.</p>
     <div class="hero-btns">
@@ -760,7 +822,7 @@
         <div class="rec-avatar rec-avatar-ns">NS</div>
         <div class="rec-author-info">
           <div class="rec-name">Neha Singh</div>
-          <div class="rec-role">Product Evangelist · Technical Marketer @ SecureW2<br>CISSP · ISC2 Chennai Chapter Board</div>
+          <div class="rec-role">Product Evangelist</div>
         </div>
         <div class="rec-date-badge">Jan 2026</div>
       </div>
@@ -785,10 +847,28 @@
   </div>
   <p class="contact-sub">Open to full-time roles, freelance projects, and consulting engagements in B2B content strategy and GTM writing.</p>
   <div class="contact-links">
-    <a class="contact-link" href="/cdn-cgi/l/email-protection#05646b70766d642b6d64776c766d3d33456268646c692b666a68">
-      <span class="contact-link-icon">✉</span> <span class="__cf_email__" data-cfemail="88e9e6fdfbe0e9a6e0e9fae1fbe0b0bec8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span>
+    <a class="contact-link" href="mailto:anusha.harish86@gmail.com">
+      <span class="contact-link-icon">✉</span> anusha.harish86@gmail.com
     </a>
     <a class="contact-link" href="tel:+919360028099">
       <span class="contact-link-icon">📞</span> +91 93600 28099
     </a>
-  </di
+    </div>
+</section>
+
+<div style="height: 4px; background: linear-gradient(to right, var(--tan), var(--accent-light), var(--tan));"></div>
+
+<footer>
+  © 2026 Anusha S  ·  Content Strategist & GTM Writer  ·  Chennai, India
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("open");
+  }
+  function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("open");
+  }
+</script>
+</body>
+</html>
